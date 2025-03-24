@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    // Target modern JavaScript for bundlers like Vite, Webpack, etc.
+    "target": "ESNext",
+    // Use ESNext module syntax
+    "module": "ESNext",
+    // Include DOM libraries (required for browser types) + ESNext for modern features
+    "lib": ["DOM", "DOM.Iterable", "ESNext", "deno.window"]
+    "types": ["https://deno.land/x/types@0.145.0/mod.d.ts"]
+
+    // -- JSX Settings --
+    // Use the new automatic JSX transform (React 17+), which requires React 17 or 18
+    "jsx": "react-jsx",
+    // Required if you’re using the new JSX transform
+    "jsxImportSource": "react",
+
+    // -- Type Checking Settings --
+    "strict": true,                      // Enable all strict type-checking options
+    "skipLibCheck": true,                // Skip checking .d.ts files
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,             // Needed with certain bundlers (like Vite)
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // -- Module Resolution --
+    "moduleResolution": "node",          // Common choice; "bundler" also possible in TS 5.x
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+
+    // -- Output Settings --
+    "noEmit": true,                      // Don’t emit compiled output; bundler will handle this
+
+    // -- Path Aliases (optional) --
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    // -- Where to load type definitions --
+    // "typeRoots" is optional; if you do specify it, make sure node_modules/@types is included
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    // Which type definitions to include | I removed all the types
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    // Any other files you want the TS compiler to handle
+    "vite.config.ts"
+  ],
+  // If you have a separate tsconfig for Node scripts, you can reference it here
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

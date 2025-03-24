@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Pompo - AI Prompt Optimizer",
+  "version": "1.0.0",
+  "description": "Enhance your AI prompts for better results from ChatGPT, Claude, and other LLMs",
+  "icons": {
+    "16": "icons/pompo-16.png",
+    "48": "icons/pompo-48.png",
+    "128": "icons/pompo-128.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icons/pompo-16.png",
+      "48": "icons/pompo-48.png",
+      "128": "icons/pompo-128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*.openai.com/*",
+    "https://*.anthropic.com/*",
+    "https://*.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.openai.com/*",
+        "https://*.anthropic.com/*",
+        "https://*.google.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "commands": {
+    "toggle-assistant": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
+      },
+      "description": "Toggle Pompo Assistant"
+    }
+  }
+} 
